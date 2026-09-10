@@ -1,0 +1,131 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monster Compendium — robotoarena</title>
+<link rel="icon" href="data:,">
+<style>
+  :root { --bg:#0d0f13; --panel:#171b22; --edge:#39424f; --ink:#e8ecf4; --dim:#96a0b1;
+    --flying:#7aa2f7; --walking:#e0af68; --swimming:#73daca; }
+  * { box-sizing:border-box }
+  body { margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.45 Georgia, "Times New Roman", serif; padding:0 16px 60px }
+  header { max-width:1200px; margin:0 auto; padding:34px 0 6px; text-align:center }
+  h1 { font:700 44px/1.05 Georgia, serif; letter-spacing:4px; margin:0;
+    color:#f3e9d2; text-shadow:0 0 18px rgba(224,175,104,.25) }
+  h1 small { display:block; font:400 15px/1.4 Georgia, serif; letter-spacing:6px;
+    color:var(--dim); margin-top:10px }
+  .rule { height:2px; max-width:520px; margin:20px auto;
+    background:linear-gradient(90deg,transparent,#e0af68,transparent) }
+  nav { max-width:1200px; margin:0 auto 22px; text-align:center }
+  .chips { margin:7px 0 }
+  .chip { background:var(--panel); color:var(--dim); border:1px solid var(--edge);
+    border-radius:999px; padding:6px 15px; margin:3px; cursor:pointer;
+    font:700 12px/1 Verdana, sans-serif; letter-spacing:1.5px }
+  .chip.on { color:var(--ink); border-color:#e0af68; background:#2a2417 }
+  .count { color:var(--dim); font-size:13px; letter-spacing:2px; margin-top:6px }
+  main { max-width:1200px; margin:0 auto; columns:3 340px; column-gap:18px }
+  .card { break-inside:avoid; margin:0 0 18px; background:var(--panel);
+    border:1px solid var(--edge); border-radius:12px; overflow:hidden }
+  .card.hide { display:none }
+  .card img { display:block; width:100%; height:auto; cursor:zoom-in }
+  figcaption { padding:8px 14px 11px; display:flex; align-items:baseline;
+    justify-content:space-between; gap:10px }
+  figcaption b { font-size:16px }
+  .meta { color:var(--dim); font:400 11px/1 Verdana, sans-serif;
+    letter-spacing:1px; white-space:nowrap }
+  #zoom { position:fixed; inset:0; background:rgba(5,6,9,.93); display:none;
+    align-items:flex-start; justify-content:center; overflow:auto; padding:26px;
+    cursor:zoom-out; z-index:9 }
+  #zoom img { max-width:min(1120px,96vw); height:auto; border-radius:10px }
+  footer { text-align:center; color:var(--dim); font-size:12px; letter-spacing:2px;
+    margin-top:40px }
+  footer a { color:var(--walking) }
+</style>
+<header>
+  <h1>MONSTER COMPENDIUM<small>THE ROBOTOARENA BESTIARY — 38 CREATURES</small></h1>
+  <div class="rule"></div>
+</header>
+<nav>
+  <div class="chips"><button class="chip on" data-k="tax" data-v="">ALL</button><button class="chip" data-k="tax" data-v="flying">FLYING</button><button class="chip" data-k="tax" data-v="walking">WALKING</button><button class="chip" data-k="tax" data-v="swimming">SWIMMING</button></div>
+  <div class="chips"><button class="chip on" data-k="level" data-v="">ALL</button><button class="chip" data-k="level" data-v="house">HOUSE</button><button class="chip" data-k="level" data-v="woods">WOODS</button><button class="chip" data-k="level" data-v="river">RIVER</button></div>
+  <div class="chips"><button class="chip on" data-k="role" data-v="">ALL</button><button class="chip" data-k="role" data-v="pack">PACK</button><button class="chip" data-k="role" data-v="miniboss">MINIBOSS</button><button class="chip" data-k="role" data-v="ambusher">AMBUSHER</button><button class="chip" data-k="role" data-v="boss">BOSS</button><button class="chip" data-k="role" data-v="bonus">BONUS</button><button class="chip" data-k="role" data-v="friendly">FRIENDLY</button></div>
+  <div class="count" id="count"></div>
+</nav>
+<main id="grid">
+<figure class="card" data-tax="flying" data-level="house" data-role="pack"><img src="sheets/flying/house_phantom.png" alt="Phantom character sheet" loading="lazy"><figcaption><b>Phantom</b><span class="meta">6 designs</span></figcaption></figure>
+<figure class="card" data-tax="flying" data-level="house" data-role="miniboss"><img src="sheets/flying/house_demon.png" alt="Lesser Nephilim character sheet" loading="lazy"><figcaption><b>Lesser Nephilim</b><span class="meta">1 design</span></figcaption></figure>
+<figure class="card" data-tax="flying" data-level="house" data-role="miniboss"><img src="sheets/flying/house_geist.png" alt="Minor Geist character sheet" loading="lazy"><figcaption><b>Minor Geist</b><span class="meta">1 design</span></figcaption></figure>
+<figure class="card" data-tax="flying" data-level="house" data-role="boss"><img src="sheets/flying/house_boss.png" alt="The Watcher character sheet" loading="lazy"><figcaption><b>The Watcher</b><span class="meta">1 design</span></figcaption></figure>
+<figure class="card" data-tax="flying" data-level="house" data-role="bonus"><img src="sheets/flying/house_wisp.png" alt="Healing Wisp character sheet" loading="lazy"><figcaption><b>Healing Wisp</b><span class="meta">1 design</span></figcaption></figure>
+<figure class="card" data-tax="walking" data-level="house" data-role="friendly"><img src="sheets/walking/house_cat.png" alt="Family Cat character sheet" loading="lazy"><figcaption><b>Family Cat</b><span class="meta">1 design</span></figcaption></figure>
+<figure class="card" data-tax="walking" data-level="house" data-role="friendly"><img src="sheets/walking/house_dog.png" alt="Family Dog character sheet" loading="lazy"><figcaption><b>Family Dog</b><span class="meta">1 design</span></figcaption></figure>
+<figure class="card" data-tax="walking" data-level="woods" data-role="pack"><img src="sheets/walking/woods_bigfoot.png" alt="Bigfoot character sheet" loading="lazy"><figcaption><b>Bigfoot</b><span class="meta">3 designs</span></figcaption></figure>
+<figure class="card" data-tax="walking" data-level="woods" data-role="pack"><img src="sheets/walking/woods_gnome.png" alt="Evil Gnome character sheet" loading="lazy"><figcaption><b>Evil Gnome</b><span class="meta">3 designs</span></figcaption></figure>
+<figure class="card" data-tax="walking" data-level="woods" data-role="pack"><img src="sheets/walking/woods_leprechaun.png" alt="Evil Leprechaun character sheet" loading="lazy"><figcaption><b>Evil Leprechaun</b><span class="meta">3 designs</span></figcaption></figure>
+<figure class="card" data-tax="walking" data-level="woods" data-role="pack"><img src="sheets/walking/woods_grey.png" alt="Grey Alien character sheet" loading="lazy"><figcaption><b>Grey Alien</b><span class="meta">3 designs</span></figcaption></figure>
+<figure class="card" data-tax="flying" data-level="woods" data-role="pack"><img src="sheets/flying/woods_mothman.png" alt="Mothman character sheet" loading="lazy"><figcaption><b>Mothman</b><span class="meta">3 designs</span></figcaption></figure>
+<figure class="card" data-tax="flying" data-level="woods" data-role="pack"><img src="sheets/flying/woods_bat.png" alt="Vampire Bat character sheet" loading="lazy"><figcaption><b>Vampire Bat</b><span class="meta">3 designs</span></figcaption></figure>
+<figure class="card" data-tax="walking" data-level="woods" data-role="pack"><img src="sheets/walking/woods_wendigo.png" alt="Wendigo character sheet" loading="lazy"><figcaption><b>Wendigo</b><span class="meta">3 designs</span></figcaption></figure>
+<figure class="card" data-tax="flying" data-level="woods" data-role="miniboss"><img src="sheets/flying/woods_ufo.png" alt="UFO Ship character sheet" loading="lazy"><figcaption><b>UFO Ship</b><span class="meta">1 design · 2 poses</span></figcaption></figure>
+<figure class="card" data-tax="walking" data-level="woods" data-role="miniboss"><img src="sheets/walking/woods_geist.png" alt="Wendigo Stag character sheet" loading="lazy"><figcaption><b>Wendigo Stag</b><span class="meta">1 design · 15 stages</span></figcaption></figure>
+<figure class="card" data-tax="walking" data-level="woods" data-role="ambusher"><img src="sheets/walking/woods_ambusher.png" alt="Bigfoot Child character sheet" loading="lazy"><figcaption><b>Bigfoot Child</b><span class="meta">1 design · 5 poses</span></figcaption></figure>
+<figure class="card" data-tax="walking" data-level="woods" data-role="boss"><img src="sheets/walking/woods_boss.png" alt="The Headless Man character sheet" loading="lazy"><figcaption><b>The Headless Man</b><span class="meta">1 design · 4 poses</span></figcaption></figure>
+<figure class="card" data-tax="flying" data-level="woods" data-role="bonus"><img src="sheets/flying/woods_wisp.png" alt="Healing Wisp character sheet" loading="lazy"><figcaption><b>Healing Wisp</b><span class="meta">1 design</span></figcaption></figure>
+<figure class="card" data-tax="walking" data-level="woods" data-role="friendly"><img src="sheets/walking/woods_chipmunk.png" alt="Chipmunk character sheet" loading="lazy"><figcaption><b>Chipmunk</b><span class="meta">1 design</span></figcaption></figure>
+<figure class="card" data-tax="walking" data-level="woods" data-role="friendly"><img src="sheets/walking/woods_deer.png" alt="Fawn character sheet" loading="lazy"><figcaption><b>Fawn</b><span class="meta">1 design</span></figcaption></figure>
+<figure class="card" data-tax="flying" data-level="woods" data-role="friendly"><img src="sheets/flying/woods_bird.png" alt="Ground Bird character sheet" loading="lazy"><figcaption><b>Ground Bird</b><span class="meta">1 design</span></figcaption></figure>
+<figure class="card" data-tax="walking" data-level="woods" data-role="friendly"><img src="sheets/walking/woods_raccoon.png" alt="Raccoon character sheet" loading="lazy"><figcaption><b>Raccoon</b><span class="meta">1 design</span></figcaption></figure>
+<figure class="card" data-tax="swimming" data-level="river" data-role="pack"><img src="sheets/swimming/river_mermaid.png" alt="Evil Mermaid character sheet" loading="lazy"><figcaption><b>Evil Mermaid</b><span class="meta">3 designs</span></figcaption></figure>
+<figure class="card" data-tax="swimming" data-level="river" data-role="pack"><img src="sheets/swimming/river_fishman.png" alt="Fish-Folk character sheet" loading="lazy"><figcaption><b>Fish-Folk</b><span class="meta">3 designs</span></figcaption></figure>
+<figure class="card" data-tax="swimming" data-level="river" data-role="pack"><img src="sheets/swimming/river_kappa.png" alt="Kappa character sheet" loading="lazy"><figcaption><b>Kappa</b><span class="meta">3 designs</span></figcaption></figure>
+<figure class="card" data-tax="swimming" data-level="river" data-role="pack"><img src="sheets/swimming/river_kelpie.png" alt="Kelpie character sheet" loading="lazy"><figcaption><b>Kelpie</b><span class="meta">3 designs</span></figcaption></figure>
+<figure class="card" data-tax="walking" data-level="river" data-role="pack"><img src="sheets/walking/river_captain.png" alt="Nautical Grey character sheet" loading="lazy"><figcaption><b>Nautical Grey</b><span class="meta">3 designs</span></figcaption></figure>
+<figure class="card" data-tax="swimming" data-level="river" data-role="miniboss"><img src="sheets/swimming/river_squid.png" alt="Giant Squid character sheet" loading="lazy"><figcaption><b>Giant Squid</b><span class="meta">1 design · 2 poses</span></figcaption></figure>
+<figure class="card" data-tax="swimming" data-level="river" data-role="miniboss"><img src="sheets/swimming/river_serpent.png" alt="Nessie character sheet" loading="lazy"><figcaption><b>Nessie</b><span class="meta">1 design · 4 poses</span></figcaption></figure>
+<figure class="card" data-tax="walking" data-level="river" data-role="ambusher"><img src="sheets/walking/river_ambusher.png" alt="Leprechaun character sheet" loading="lazy"><figcaption><b>Leprechaun</b><span class="meta">1 design · 5 poses</span></figcaption></figure>
+<figure class="card" data-tax="swimming" data-level="river" data-role="boss"><img src="sheets/swimming/river_boss.png" alt="Dagon character sheet" loading="lazy"><figcaption><b>Dagon</b><span class="meta">1 design · 8 poses</span></figcaption></figure>
+<figure class="card" data-tax="flying" data-level="river" data-role="bonus"><img src="sheets/flying/river_wisp.png" alt="Healing Wisp character sheet" loading="lazy"><figcaption><b>Healing Wisp</b><span class="meta">1 design</span></figcaption></figure>
+<figure class="card" data-tax="swimming" data-level="river" data-role="friendly"><img src="sheets/swimming/river_beaver.png" alt="Beaver character sheet" loading="lazy"><figcaption><b>Beaver</b><span class="meta">1 design</span></figcaption></figure>
+<figure class="card" data-tax="swimming" data-level="river" data-role="friendly"><img src="sheets/swimming/river_dolphin.png" alt="Dolphin character sheet" loading="lazy"><figcaption><b>Dolphin</b><span class="meta">1 design</span></figcaption></figure>
+<figure class="card" data-tax="walking" data-level="river" data-role="friendly"><img src="sheets/walking/river_fisherman.png" alt="Fisherman character sheet" loading="lazy"><figcaption><b>Fisherman</b><span class="meta">1 design</span></figcaption></figure>
+<figure class="card" data-tax="flying" data-level="river" data-role="friendly"><img src="sheets/flying/river_flyingfish.png" alt="Flying Fish character sheet" loading="lazy"><figcaption><b>Flying Fish</b><span class="meta">1 design</span></figcaption></figure>
+<figure class="card" data-tax="swimming" data-level="river" data-role="friendly"><img src="sheets/swimming/river_otter.png" alt="Otter character sheet" loading="lazy"><figcaption><b>Otter</b><span class="meta">1 design</span></figcaption></figure>
+</main>
+<div id="zoom"><img alt=""></div>
+<footer>GENERATED FROM THE GAME'S OWN THEME DEFINITIONS · v1.29.0 ·
+  <a href="../">PLAY THE GAME</a></footer>
+<script>
+  var sel = { tax:"", level:"", role:"" };
+  var cards = [].slice.call(document.querySelectorAll(".card"));
+  function apply() {
+    var n = 0;
+    cards.forEach(function (c) {
+      var ok = (!sel.tax || c.dataset.tax === sel.tax) &&
+               (!sel.level || c.dataset.level === sel.level) &&
+               (!sel.role || c.dataset.role === sel.role);
+      c.classList.toggle("hide", !ok);
+      if (ok) n++;
+    });
+    document.getElementById("count").textContent = "SHOWING " + n + " OF " + cards.length;
+  }
+  document.querySelectorAll(".chip").forEach(function (b) {
+    b.onclick = function () {
+      sel[b.dataset.k] = b.dataset.v;
+      b.parentNode.querySelectorAll(".chip").forEach(function (o) {
+        o.classList.toggle("on", o === b);
+      });
+      apply();
+    };
+  });
+  var zoom = document.getElementById("zoom");
+  document.getElementById("grid").addEventListener("click", function (e) {
+    if (e.target.tagName !== "IMG") return;
+    zoom.firstElementChild.src = e.target.src;
+    zoom.style.display = "flex";
+  });
+  zoom.onclick = function () { zoom.style.display = "none"; };
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") zoom.style.display = "none";
+  });
+  apply();
+</script>
